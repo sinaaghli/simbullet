@@ -1,0 +1,7 @@
+################################################################################
+# Compute paths
+get_filename_component(simbullet_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+
+set( simbullet_INCLUDE_DIR  "@simbullet_INCLUDE_DIR@" )
+set( simbullet_INCLUDE_DIRS  "@simbullet_INCLUDE_DIR@" )
+
