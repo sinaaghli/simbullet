@@ -1,2 +1,2 @@
 # simbullet
-simple wrapper for bullet physics engine
+Vehicle Dynamics Simulator Based on Bullet Physics Engine

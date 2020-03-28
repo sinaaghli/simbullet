@@ -21,14 +21,15 @@
 // IN THE SOFTWARE.
 
 #include <iostream>
-
 #include <simbullet/simbullet.h>
 
 using namespace std;
 
-int main() {
+int main(int argc, char *argv[]) {
   simbullet a;
   int b =0;
   b = a.dosth(b);
+  a.run_example();
+
   return 0;
 }
