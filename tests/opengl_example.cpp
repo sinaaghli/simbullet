@@ -13,13 +13,13 @@ subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "../CommonInterfaces/CommonExampleInterface.h"
-#include "../CommonInterfaces/CommonGUIHelperInterface.h"
-#include "../Utils/b3Clock.h"
+#include <../examples/CommonInterfaces/CommonExampleInterface.h>
+#include <../examples/CommonInterfaces/CommonGUIHelperInterface.h>
+#include <../examples/Utils/b3Clock.h>
 
-#include "../OpenGLWindow/SimpleOpenGL3App.h"
+#include <../examples/OpenGLWindow/SimpleOpenGL3App.h>
 #include <stdio.h>
-#include "../ExampleBrowser/OpenGLGuiHelper.h"
+#include <../examples/ExampleBrowser/OpenGLGuiHelper.h>
 
 CommonExampleInterface* example;
 int gSharedMemoryKey = -1;

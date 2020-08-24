@@ -39,6 +39,24 @@ SET(DEP_INCLUDE_DIRS
 SET(DEP_LIBS 
       )
 
+
+IF(APPLE)
+      find_library(COCOA NAMES Cocoa)
+      MESSAGE(${COCOA})
+      SET(DEP_LIBS ${DEP_LIBS} ${COCOA} ${OPENGL_gl_LIBRARY} ${OPENGL_glu_LIBRARY})
+
+ELSE(APPLE)
+      INCLUDE_DIRECTORIES(
+            ${BULLET_PHYSICS_SOURCE_DIR}/btgui/OpenGLWindow/GlewWindows
+      )
+      ADD_DEFINITIONS("-DGLEW_INIT_OPENGL11_FUNCTIONS=1")
+      ADD_DEFINITIONS("-DGLEW_STATIC")
+      ADD_DEFINITIONS("-DGLEW_DYNAMIC_LOAD_ALL_GLX_FUNCTIONS=1")
+
+      SET(DEP_LIBS ${DEP_LIBS}  pthread ${DL} )
+ENDIF(APPLE)
+
+
 SET(DEP_BULLET_INCLUDE_DIRS 
       ${BULLET_PHYSICS_SOURCE_DIR}/src
       )
@@ -47,7 +65,7 @@ SET(DEP_BULLET_LIBS
       BulletCollision 
       LinearMath 
       # ${BULLET_LIBRARIES}
-      # OpenGLWindow 
+      OpenGLWindow 
       Bullet3Common 
       )
 
