@@ -29,20 +29,24 @@ set(bullet3_force_shared_crt ON CACHE BOOL "" FORCE)
 add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/bullet3-src
       ${CMAKE_CURRENT_BINARY_DIR}/bullet3-build)
             # EXCLUDE_FROM_ALL)
-message("exp->${PROJECT_EXPORT}")
+            
 ################################################################################
 # FIND_PACKAGE( Eigen3 REQUIRED )
 
 SET(DEP_INCLUDE_DIRS 
-      ${BULLET_PHYSICS_SOURCE_DIR}/src
-            # ${BULLET_INCLUDE_DIR}
+      "${CMAKE_CURRENT_SOURCE_DIR}"
+      )
+SET(DEP_LIBS 
       )
 
- SET(DEP_LIBS 
+SET(DEP_BULLET_INCLUDE_DIRS 
+      ${BULLET_PHYSICS_SOURCE_DIR}/src
+      )
+SET(DEP_BULLET_LIBS 
       BulletDynamics
       BulletCollision 
       LinearMath 
-      # ${BULLET_LIBRARIES}
+      ${BULLET_LIBRARIES}
       # OpenGLWindow 
       Bullet3Common 
       )

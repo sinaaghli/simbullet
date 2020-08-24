@@ -42,7 +42,8 @@ endforeach()
 include_directories(
   "${PROJECT_SOURCE_DIR}"
   "${PROJECT_BINARY_DIR}"
-  SYSTEM BEFORE INTERFACE "$<BUILD_INTERFACE:${DEP_INCLUDE_DIRS}>")
+  "${DEP_INCLUDE_DIRS}"
+  SYSTEM BEFORE INTERFACE "$<BUILD_INTERFACE:${DEP_BULLET_INCLUDE_DIRS}>")
 
 # Library name (by default is the project name in lowercase)
 # Example: libfoo.so
