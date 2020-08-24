@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.17.3)
 
 SET(PROJECT_NAME simbullet)
 PROJECT(${PROJECT_NAME})
@@ -29,7 +29,7 @@ set(bullet3_force_shared_crt ON CACHE BOOL "" FORCE)
 add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/bullet3-src
       ${CMAKE_CURRENT_BINARY_DIR}/bullet3-build)
             # EXCLUDE_FROM_ALL)
-            
+
 ################################################################################
 # FIND_PACKAGE( Eigen3 REQUIRED )
 
@@ -46,7 +46,7 @@ SET(DEP_BULLET_LIBS
       BulletDynamics
       BulletCollision 
       LinearMath 
-      ${BULLET_LIBRARIES}
+      # ${BULLET_LIBRARIES}
       # OpenGLWindow 
       Bullet3Common 
       )
