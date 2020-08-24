@@ -15,6 +15,8 @@ int simbullet::dosth(int a){
 }
 
 int simbullet::run_example(){
+	///-----includes_end-----
+
 	int i;
 	///-----initialization_start-----
 

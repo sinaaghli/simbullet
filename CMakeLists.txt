@@ -6,13 +6,47 @@ PROJECT(${PROJECT_NAME})
 # SET( CMAKE_VERBOSE_MAKEFILE OFF)
 
 ################################################################################
-FIND_PACKAGE( Bullet REQUIRED )
+# Download and unpack bullet3 at configure time
+configure_file(CMakeLists.txt.in bullet3-download/CMakeLists.txt)
+execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
+      RESULT_VARIABLE result
+      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bullet3-download )
+if(result)
+      message(FATAL_ERROR "CMake step for bullet3 failed: ${result}")
+endif()
+execute_process(COMMAND ${CMAKE_COMMAND} --build .
+      RESULT_VARIABLE result
+      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bullet3-download )
+if(result)
+      message(FATAL_ERROR "Build step for bullet3 failed: ${result}")
+endif()
+
+# Prevent overriding the parent project's compiler/linker
+# settings on Windows
+set(bullet3_force_shared_crt ON CACHE BOOL "" FORCE)
+
+# Add bullet3 directly to our build.
+add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/bullet3-src
+      ${CMAKE_CURRENT_BINARY_DIR}/bullet3-build)
+            # EXCLUDE_FROM_ALL)
+message("exp->${PROJECT_EXPORT}")
+################################################################################
+# FIND_PACKAGE( Eigen3 REQUIRED )
 
 SET(DEP_INCLUDE_DIRS 
-      ${BULLET_INCLUDE_DIR})
+      ${BULLET_PHYSICS_SOURCE_DIR}/src
+            # ${BULLET_INCLUDE_DIR}
+      )
 
-SET(DEP_LIBS 
-      ${BULLET_LIBRARIES})
+ SET(DEP_LIBS 
+      BulletDynamics
+      BulletCollision 
+      LinearMath 
+      # ${BULLET_LIBRARIES}
+      # OpenGLWindow 
+      Bullet3Common 
+      )
+
 ################################################################################
 
 # Set variables

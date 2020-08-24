@@ -2,6 +2,7 @@
 #define SIMBULLET_H__
 
 #include <btBulletDynamicsCommon.h>
+// #include <bullet3-src/src/btBulletDynamicsCommon.h>
 #include <simbullet/version.h>
 
 class simbullet{
