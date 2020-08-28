@@ -1,4 +1,4 @@
-#include <simbullet/simbullet.h>
+#include "simbullet.h"
 
 simbullet::simbullet(){
     cnt++;
@@ -171,4 +171,55 @@ int simbullet::run_example(){
 
 	//next line is optional: it will be cleared by the destructor when the array goes out of scope
 	collisionShapes.clear();
+}
+
+int simbullet::run_gui_example(){
+	SimpleOpenGL3App* app = new SimpleOpenGL3App("Simbullet GUI Example", 1024, 768, true);
+
+	// prevMouseButtonCallback = app->m_window->getMouseButtonCallback();
+	// prevMouseMoveCallback = app->m_window->getMouseMoveCallback();
+
+CommonExampleInterface* example;
+int gSharedMemoryKey = -1;
+
+	// app->m_window->setMouseButtonCallback((b3MouseButtonCallback)OnMouseDown);
+	// app->m_window->setMouseMoveCallback((b3MouseMoveCallback)OnMouseMove);
+
+	OpenGLGuiHelper gui(app, true);
+
+	CommonExampleOptions options(&gui);
+
+	example = VehicleCreateFunc(options);
+
+	example->initPhysics();
+	example->resetCamera();
+
+	b3Clock clock;
+
+	do
+	{
+		app->m_instancingRenderer->init();
+		app->m_instancingRenderer->updateCamera(app->getUpAxis());
+
+		btScalar dtSec = btScalar(clock.getTimeInSeconds());
+		if (dtSec > 0.1)
+			dtSec = 0.1;
+
+		example->stepSimulation(dtSec);
+		clock.reset();
+
+		example->renderScene();
+
+		DrawGridData dg;
+		dg.upAxis = app->getUpAxis();
+		app->drawGrid(dg);
+
+		app->swapBuffer();
+	} while (!app->m_window->requestedExit());
+
+	example->exitPhysics();
+	delete example;
+	delete app;
+	return 0;
+
 }

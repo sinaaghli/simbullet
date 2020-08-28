@@ -30,6 +30,6 @@ int main(int argc, char *argv[]) {
   int b =0;
   b = a.dosth(b);
   a.run_example();
-
+  a.run_gui_example();
   return 0;
 }

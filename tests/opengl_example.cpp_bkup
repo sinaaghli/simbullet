@@ -15,6 +15,7 @@ subject to the following restrictions:
 
 #include <../examples/CommonInterfaces/CommonExampleInterface.h>
 #include <../examples/CommonInterfaces/CommonGUIHelperInterface.h>
+#include <../examples/Vehicles/Hinge2Vehicle.h>
 #include <../examples/Utils/b3Clock.h>
 
 #include <../examples/OpenGLWindow/SimpleOpenGL3App.h>
@@ -66,7 +67,10 @@ public:
 };
 int main(int argc, char* argv[])
 {
-	SimpleOpenGL3App* app = new SimpleOpenGL3App("Bullet Standalone Example", 1024, 768, true);
+	SimpleOpenGL3App* app = new SimpleOpenGL3App("Simbullet GUI Example", 1024, 768, true);
+	// char txt[] = "some text example";
+	// float col[4] = {1.0f,0.0f,0.0f,0.5f};
+	// app->drawText(txt,4,4,1000,col);
 
 	prevMouseButtonCallback = app->m_window->getMouseButtonCallback();
 	prevMouseMoveCallback = app->m_window->getMouseMoveCallback();
@@ -74,13 +78,14 @@ int main(int argc, char* argv[])
 	app->m_window->setMouseButtonCallback((b3MouseButtonCallback)OnMouseDown);
 	app->m_window->setMouseMoveCallback((b3MouseMoveCallback)OnMouseMove);
 
-	OpenGLGuiHelper gui(app, false);
+	OpenGLGuiHelper gui(app, true);
 	//LessDummyGuiHelper gui(app);
 	//DummyGUIHelper gui;
 
 	CommonExampleOptions options(&gui);
 
-	example = StandaloneExampleCreateFunc(options);
+	// example = StandaloneExampleCreateFunc(options);
+	example = Hinge2VehicleCreateFunc(options);
 	example->processCommandLineArgs(argc, argv);
 
 	example->initPhysics();
