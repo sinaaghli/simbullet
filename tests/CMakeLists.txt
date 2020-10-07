@@ -1,5 +1,5 @@
 add_executable(test_sim1 test_sim1.cpp)
-target_link_libraries(test_sim1 ${LIBRARY_NAME})
+target_link_libraries(test_sim1 ${LIBRARY_NAME} -pthread)
 
 # install(
 #   TARGETS test_sim1
